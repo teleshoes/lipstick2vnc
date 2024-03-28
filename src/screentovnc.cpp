@@ -546,7 +546,24 @@ cursor_info ScreenToVnc::load_cursor_info_from_png(const char* filename)
     unsigned long width;
     unsigned long height;
 
-    //TODO: implement reading PNG img data
+    int bpp = 4;
+
+    QImage pngImg = QImage(filename);
+    width = pngImg.width();
+    height = pngImg.height();
+
+    png.reserve(bpp * width * height);
+
+    for(int y=0; y<height; y++){
+      QRgb *pxRow = (QRgb*) pngImg.scanLine(y);
+      for(int x=0; x<width; x++) {
+          QRgb &px = pxRow[x];
+          png.push_back(qRed(px));
+          png.push_back(qGreen(px));
+          png.push_back(qBlue(px));
+          png.push_back(qAlpha(px));
+      }
+    }
 
     info.width = width;
     info.height = height;
