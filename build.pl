@@ -4,8 +4,8 @@ use warnings;
 use Cwd qw(abs_path);
 use File::Basename qw(basename dirname);
 
-my $VERSION = "0.10.0+cursorpng";
-my $TARGET = "SailfishOS-4.5.0.18-aarch64.default";
+my $VERSION = "0.11.0";
+my $TARGET = "SailfishOS-4.6.0.11EA-aarch64.default";
 
 my $DIR = dirname(abs_path($0));
 my $EXEC = basename $0;
